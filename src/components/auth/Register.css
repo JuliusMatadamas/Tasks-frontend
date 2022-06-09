@@ -1,0 +1,14 @@
+#container__register {
+    margin: auto;
+    max-width: 540px;
+    width: 90%;
+}
+
+@media (max-width: 767px) {
+    .App {
+        padding-bottom: 50px;
+    }
+    #container__register {
+        margin-top: 50px;
+    }
+}

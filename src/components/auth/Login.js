@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import swal from 'sweetalert';
 
+
 const Login = () => {
     // state del login
     const [login, setLogin] = useState({
@@ -32,7 +33,8 @@ const Login = () => {
         }
         else
         {
-            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value))
+            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!re.test(e.target.value))
             {
                 setLogin({
                     ...login,
@@ -121,69 +123,71 @@ const Login = () => {
     }
 
     return(
-        <section className={`card p-4 rounded shadow`}>
-            <h1 className={`fs-5 fw-bold`}>Welcome to Task App</h1>
-            <p>Please, input your data to log in.</p>
+        <main className={`App`}>
+            <section className={`animate__animated animate__fadeInDown card p-4 rounded shadow`}>
+                <h1 className={`fs-5 fw-bold`}>Welcome to Task App</h1>
+                <p>Please, input your data to log in.</p>
 
-            <form onSubmit={handleSubmit}>
-                <div className={`row`}>
-                    <div className={`col-12`}>
-                        <label
-                            htmlFor="email"
-                            className={`form-label`}
-                        >Email</label>
-                        <input
-                            type="email"
-                            className={`form-control form-control-sm ${emailValid}`}
-                            id="email"
-                            name="email"
-                            onChange={handleEmailChange}
-                            value={email}
-                            placeholder="example@email.com"/>
-                        <div
-                            className={`${emailFeedback}`}
-                            dangerouslySetInnerHTML={{__html: emailFeedbackMsg}}
-                        ></div>
+                <form onSubmit={handleSubmit}>
+                    <div className={`row`}>
+                        <div className={`col-12`}>
+                            <label
+                                htmlFor="email"
+                                className={`form-label`}
+                            >Email</label>
+                            <input
+                                type="email"
+                                className={`form-control form-control-sm ${emailValid}`}
+                                id="email"
+                                name="email"
+                                onChange={handleEmailChange}
+                                value={email}
+                                placeholder="example@email.com"/>
+                            <div
+                                className={`${emailFeedback}`}
+                                dangerouslySetInnerHTML={{__html: emailFeedbackMsg}}
+                            ></div>
+                        </div>
                     </div>
-                </div>
 
-                <div className={`row`}>
-                    <div className={`col-12`}>
-                        <label
-                            htmlFor="password"
-                            className={`form-label`}
-                        >Password</label>
-                        <input
-                            type="password"
-                            className={`form-control form-control-sm ${passwordValid}`}
-                            id="password"
-                            name="password"
-                            onChange={handlePasswordChange}
-                            value={password}
-                            placeholder="At least 6 characters"/>
-                        <div
-                            className={`${passwordFeedback}`}
-                            dangerouslySetInnerHTML={{__html: passwordFeedbackMsg}}
-                        ></div>
+                    <div className={`row`}>
+                        <div className={`col-12`}>
+                            <label
+                                htmlFor="password"
+                                className={`form-label`}
+                            >Password</label>
+                            <input
+                                type="password"
+                                className={`form-control form-control-sm ${passwordValid}`}
+                                id="password"
+                                name="password"
+                                onChange={handlePasswordChange}
+                                value={password}
+                                placeholder="At least 6 characters"/>
+                            <div
+                                className={`${passwordFeedback}`}
+                                dangerouslySetInnerHTML={{__html: passwordFeedbackMsg}}
+                            ></div>
+                        </div>
                     </div>
-                </div>
 
-                <div className={`mt-3 row`}>
-                    <div className={`col-12`}>
-                        <button
-                            type="submit"
-                            className={`btn btn-sm btn-success w-100`}
-                        >Login</button>
+                    <div className={`mt-3 row`}>
+                        <div className={`col-12`}>
+                            <button
+                                type="submit"
+                                className={`btn btn-sm btn-success w-100`}
+                            >Login</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
-            <div
-                className={`mt-3 row`}
-            >
-                <p>Not registered? click <span className={``}><a href="register">here</a></span></p>
-            </div>
-        </section>
+                <div
+                    className={`mt-3 row`}
+                >
+                    <p>Not registered? click <span className={``}><a href="register">here</a></span></p>
+                </div>
+            </section>
+        </main>
     )
 };
 

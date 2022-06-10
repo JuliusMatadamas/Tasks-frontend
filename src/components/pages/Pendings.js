@@ -16,7 +16,7 @@ const Pendings = () => {
             <Sidebar></Sidebar>
             <section id="page-content-wrapper">
                 <Navbar handleMenuToggle={handleMenuToggle}></Navbar>
-                <div className={`container-fluid px-4`}>
+                <div className={`animate__animated animate__fadeInRight container-fluid px-4`}>
                     <div className={`align-items-center bg-white justify-content-around p-3 rounded shadow-sm`}>
                         <h3>Pendings tasks</h3>
                     </div>

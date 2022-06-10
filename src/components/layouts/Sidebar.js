@@ -6,7 +6,7 @@ import { GrLogout } from "react-icons/gr";
 
 const Sidebar = ({handleMenuToggle}) => {
     return(
-        <section id="sidebar-wrapper" className={`bg-white`}>
+        <section id="sidebar-wrapper" className={`animate__animated animate__fadeInLeft bg-white`}>
             <div className={`border-bottom fs-4 fw-bold primary-text py-4 sidebar-heading text-center`}>
                 <BsListTask></BsListTask> Tasks
             </div>

@@ -4,7 +4,7 @@ import "./Dashboard.css";
 import Sidebar from "../layouts/Sidebar";
 import Navbar from "../layouts/Navbar";
 
-const Dashboard = () => {
+const Finished = () => {
     const wrapper = useRef(null);
 
     const handleMenuToggle = () => {
@@ -18,7 +18,7 @@ const Dashboard = () => {
                 <Navbar handleMenuToggle={handleMenuToggle}></Navbar>
                 <div className={`container-fluid px-4`}>
                     <div className={`align-items-center bg-white justify-content-around p-3 rounded shadow-sm`}>
-                        <h3>Dashboard</h3>
+                        <h3>Tasks finished</h3>
                     </div>
                 </div>
             </section>
@@ -26,4 +26,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+export default Finished;

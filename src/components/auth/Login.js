@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import swal from 'sweetalert';
 
 
 const Login = () => {
+    // referencias a los elementos del form
+    const refEmail = useRef(null);
+    const refPassword = useRef(null);
+
     // state del login
     const [login, setLogin] = useState({
         email : '',
@@ -101,24 +105,43 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!emailOk || !passwordOk)
+        if (!emailOk)
         {
             swal({
-                title: "Something is missing!!",
-                text: "One or both fields are missing or do not meet the requirements!",
+                title: "Email required!!",
+                text: "Please, complete the email input with a valid email address.",
                 icon: "warning",
                 dangerMode: true,
+            })
+            .then(() => {
+                refEmail.current.focus();
             });
+            return;
         }
         else
         {
-            // Login mediante ajax
-            swal({
-                title: "Good job!",
-                text: "You clicked the button!",
-                icon: "success",
-                button: "Aww yiss!",
-            });
+            if (!passwordOk) {
+                swal({
+                    title: "Password required!!",
+                    text: "Please fill in the password field with at least 6 characters.",
+                    icon: "warning",
+                    dangerMode: true,
+                })
+                .then(() => {
+                    refPassword.current.focus();
+                });
+                return;
+            }
+            else
+            {
+                // Login mediante ajax
+                swal({
+                    title: "Good job!",
+                    text: "You clicked the button!",
+                    icon: "success",
+                    button: "Aww yiss!",
+                });
+            }
         }
     }
 
@@ -140,6 +163,7 @@ const Login = () => {
                                 className={`form-control form-control-sm ${emailValid}`}
                                 id="email"
                                 name="email"
+                                ref={refEmail}
                                 onChange={handleEmailChange}
                                 value={email}
                                 placeholder="example@email.com"/>
@@ -161,6 +185,7 @@ const Login = () => {
                                 className={`form-control form-control-sm ${passwordValid}`}
                                 id="password"
                                 name="password"
+                                ref={refPassword}
                                 onChange={handlePasswordChange}
                                 value={password}
                                 placeholder="At least 6 characters"/>

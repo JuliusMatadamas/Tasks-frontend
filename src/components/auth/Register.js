@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import swal from 'sweetalert';
 import "./Register.css";
 
 const Register = () => {
+    // se obtiene la fecha actual
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = (parseInt(currentDate.getMonth()) + 1) < 10 ? "0" + (parseInt(currentDate.getMonth()) + 1) : (parseInt(currentDate.getMonth()) + 1);
     const day = parseInt(currentDate.getDate()) < 10 ? "0" + parseInt(currentDate.getDate()) : parseInt(currentDate.getDate());
     const currentDateFormat = year + "-" + month + "-" + day;
 
+    // ref del register
+    const refFirstName = useRef(null);
+    const refLastName = useRef(null);
+    const refBirthDay = useRef(null);
+    const refEmail = useRef(null);
+    const refPassword = useRef(null);
+    const refPasswordConfirm = useRef(null);
+
+    // state del register
     const [register, setRegister] = useState({
         firstName : '',
         firstNameValid : '',
@@ -41,18 +52,143 @@ const Register = () => {
         passwordConfirmOk : false
     });
 
-    const { firstName, firstNameValid, firstNameFeedback, firstNameFeedbackMsg, lastName, lastNameValid, lastNameFeedback, lastNameFeedbackMsg, birthday, birthdayValid, birthdayFeedback, birthdayFeedbackMsg, email, emailValid, emailFeedback, emailFeedbackMsg, password, passwordValid, passwordFeedback, passwordFeedbackMsg, passwordConfirm, passwordConfirmValid, passwordConfirmFeedback, passwordConfirmFeedbackMsg } = register;
+    const { firstName, firstNameValid, firstNameFeedback, firstNameFeedbackMsg, firstNameOk, lastName, lastNameValid, lastNameFeedback, lastNameFeedbackMsg, lastNameOk, birthday, birthdayValid, birthdayFeedback, birthdayFeedbackMsg, birthdayOk, email, emailValid, emailFeedback, emailFeedbackMsg, emailOk, password, passwordValid, passwordFeedback, passwordFeedbackMsg, passwordOk, passwordConfirm, passwordConfirmValid, passwordConfirmFeedback, passwordConfirmFeedbackMsg, passwordConfirmOk } = register;
 
     const handleFirstNameChange = e => {
-        console.log(e.target.value);
+        if (e.target.value.length === 0)
+        {
+            setRegister({
+                ...register,
+                firstName : e.target.value,
+                firstNameValid : '',
+                firstNameFeedback : '',
+                firstNameFeedbackMsg : '&nbsp;',
+                firstNameOk : false
+            });
+        }
+        else
+        {
+            if (e.target.value.length < 2) {
+                setRegister({
+                    ...register,
+                    firstName : e.target.value,
+                    firstNameValid : 'is-invalid',
+                    firstNameFeedback : 'invalid-feedback',
+                    firstNameFeedbackMsg : 'Enter at least 2 characters!',
+                    firstNameOk : false
+                });
+            }
+            else
+            {
+                let regex = /^[A-Za-zÁÉÍÓÚÜáéíóúüñÑ ]+$/g;
+                if (!regex.test(e.target.value)) {
+                    setRegister({
+                        ...register,
+                        firstName : e.target.value,
+                        firstNameValid : 'is-invalid',
+                        firstNameFeedback : 'invalid-feedback',
+                        firstNameFeedbackMsg : 'Enter only letters and spaces in the name!',
+                        firstNameOk : false
+                    });
+                }
+                else
+                {
+                    setRegister({
+                        ...register,
+                        firstName : e.target.value,
+                        firstNameValid : 'is-valid',
+                        firstNameFeedback : 'valid-feedback',
+                        firstNameFeedbackMsg : 'Looks good!',
+                        firstNameOk : true
+                    });
+                }
+            }
+        }
     }
 
     const handleLastNameChange = e => {
-        console.log(e.target.value);
+        if (e.target.value.length === 0)
+        {
+            setRegister({
+                ...register,
+                lastName : e.target.value,
+                lastNameValid : '',
+                lastNameFeedback : '',
+                lastNameFeedbackMsg : '&nbsp;',
+                lastNameOk : false
+            });
+        }
+        else
+        {
+            if (e.target.value.length < 2) {
+                setRegister({
+                    ...register,
+                    lastName : e.target.value,
+                    lastNameValid : 'is-invalid',
+                    lastNameFeedback : 'invalid-feedback',
+                    lastNameFeedbackMsg : 'Enter at least 2 characters!',
+                    lastNameOk : false
+                });
+            }
+            else
+            {
+                let regex = /^[A-Za-zÁÉÍÓÚÜáéíóúüñÑ ]+$/g;
+                if (!regex.test(e.target.value)) {
+                    setRegister({
+                        ...register,
+                        lastName : e.target.value,
+                        lastNameValid : 'is-invalid',
+                        lastNameFeedback : 'invalid-feedback',
+                        lastNameFeedbackMsg : 'Enter only letters and spaces in the name!',
+                        lastNameOk : false
+                    });
+                }
+                else
+                {
+                    setRegister({
+                        ...register,
+                        lastName : e.target.value,
+                        lastNameValid : 'is-valid',
+                        lastNameFeedback : 'valid-feedback',
+                        lastNameFeedbackMsg : 'Looks good!',
+                        lastNameOk : true
+                    });
+                }
+            }
+        }
     }
 
     const handleBirthdayChange = e => {
-        console.log(e.target.value);
+        let selectDate = e.target.value.split("-");
+        let selectYear = selectDate[0];
+        let selectMonth = parseInt(selectDate[1]) - 1;
+        let selectDay = parseInt(selectDate[2]);
+        let selectBirthday = new Date(selectYear, selectMonth, selectDay);
+        currentDate.setHours(0,0,0,0);
+        selectBirthday.setHours(0,0,0,0);
+
+        if((selectBirthday.getTime() - currentDate.getTime())/(1000*60*60*24) > (((18*365.25)-1)*-1))
+        {
+            setRegister({
+                ...register,
+                birthday : e.target.value,
+                birthdayValid : 'is-invalid',
+                birthdayFeedback : 'invalid-feedback',
+                birthdayFeedbackMsg : 'You must be at least 18 years old!',
+                birthdayOk : false
+            });
+        }
+        else
+        {
+            setRegister({
+                ...register,
+                birthday : e.target.value,
+                birthdayValid : 'is-valid',
+                birthdayFeedback : 'valid-feedback',
+                birthdayFeedbackMsg : 'Looks good!',
+                birthdayOk : true
+            });
+        }
     }
 
     const handleEmailChange = e => {
@@ -173,13 +309,101 @@ const Register = () => {
         }
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if (!firstNameOk)
+        {
+            swal({
+                title: "The first name field does not meet the requirements!",
+                text: "Please complete the first name field with at least 2 characters, only letters and spaces!",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refFirstName.current.focus();
+            });
+            return;
+        }
+
+        if (!lastNameOk)
+        {
+            swal({
+                title: "The last name field does not meet the requirements!",
+                text: "Please complete the last name field with at least 2 characters, only letters and spaces!",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refLastName.current.focus();
+            });
+            return;
+        }
+
+        if (!birthdayOk)
+        {
+            swal({
+                title: "The birthday field does not meet the requirements!",
+                text: "Enter your birthday, you must be 18 years old to be able to register.",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refBirthDay.current.focus();
+            });
+            return;
+        }
+
+        if (!emailOk)
+        {
+            swal({
+                title: "Email required!!",
+                text: "Please, complete the email input with a valid email address.",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refEmail.current.focus();
+            });
+            return;
+        }
+
+        if (!passwordOk) {
+            swal({
+                title: "Password required!!",
+                text: "Please fill in the password field with at least 6 characters.",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refPassword.current.focus();
+            });
+            return;
+        }
+
+        if (!passwordConfirmOk) {
+            swal({
+                title: "Password confirm required!!",
+                text: "Please fill in the password confirm field with at least 6 characters.",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refPasswordConfirm.current.focus();
+            });
+            return;
+        }
+
+        // se manda la información al servidor
+    };
+
     return(
         <main className={`App`}>
             <section id="container__register" className={`animate__animated animate__fadeInDown card p-4 rounded shadow`}>
                 <h1 className={`fs-5 fw-bold`}>Welcome to Task App</h1>
                 <p>Please, input your data to register.</p>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className={`row`}>
                         <div className={`col-md-6 col-lg-6`}>
                             <div className={`row`}>
@@ -193,6 +417,7 @@ const Register = () => {
                                         className={`form-control form-control-sm ${firstNameValid}`}
                                         id="firstName"
                                         name="firstName"
+                                        ref={refFirstName}
                                         onChange={handleFirstNameChange}
                                         value={firstName}
                                         placeholder="Only letters, at least 2"/>
@@ -214,6 +439,7 @@ const Register = () => {
                                         className={`form-control form-control-sm ${lastNameValid}`}
                                         id="lastName"
                                         name="lastName"
+                                        ref={refLastName}
                                         onChange={handleLastNameChange}
                                         value={lastName}
                                         placeholder="Only letters, at least 2"/>
@@ -235,6 +461,7 @@ const Register = () => {
                                         className={`form-control form-control-sm ${birthdayValid}`}
                                         id="birthday"
                                         name="birthday"
+                                        ref={refBirthDay}
                                         onChange={handleBirthdayChange}
                                         value={birthday}/>
                                     <div
@@ -257,6 +484,7 @@ const Register = () => {
                                         className={`form-control form-control-sm ${emailValid}`}
                                         id="email"
                                         name="email"
+                                        ref={refEmail}
                                         onChange={handleEmailChange}
                                         value={email}
                                         placeholder="example@email.com"/>
@@ -278,6 +506,7 @@ const Register = () => {
                                         className={`form-control form-control-sm ${passwordValid}`}
                                         id="password"
                                         name="password"
+                                        ref={refPassword}
                                         onChange={handlePasswordChange}
                                         value={password}
                                         placeholder="At least 6 characters"/>
@@ -299,6 +528,7 @@ const Register = () => {
                                         className={`form-control form-control-sm ${passwordConfirmValid}`}
                                         id="passwordConfirm"
                                         name="passwordConfirm"
+                                        ref={refPasswordConfirm}
                                         onChange={handlePasswordConfirmChange}
                                         value={passwordConfirm}
                                         placeholder="At least 6 characters"/>

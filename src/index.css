@@ -45,6 +45,9 @@
 .secondary-text {
   color: var(--second-text-color);
 }
+.zindex-dropdown {
+  z-index: 1000;
+}
 #menu-toggle {
   cursor: pointer;
 }

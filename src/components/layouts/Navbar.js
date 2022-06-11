@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 
 const Navbar = ({handleMenuToggle}) => {
     return(
-        <nav className={`animate__animated animate__fadeInDown bg-transparent px-4 py-4 navbar navbar-expand-lg navbar-light`}>
+        <nav className={`animate__animated animate__fadeInDown bg-transparent px-4 py-4 navbar navbar-expand-lg navbar-light zindex-dropdown`}>
             <div className={`align-items-center d-flex`}>
                 <FaBars id="menu-toggle" onClick={handleMenuToggle} className={`primary-text fs-4 me-3`}></FaBars>
                 <h2 className={`fs-5 m-0`}>Menu</h2>

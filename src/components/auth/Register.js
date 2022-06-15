@@ -1,8 +1,30 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import swal from 'sweetalert';
 import "./Register.css";
+import AuthContext from "../../context/authentication/authContext";
 
-const Register = () => {
+const Register = (props) => {
+    console.log(props);
+    // extraer valores del context
+    const authContext = useContext(AuthContext);
+    const { auth, message, registerUser } = authContext;
+
+    // En caso de que el usuario se haya o ya este registrado
+    useEffect(() => {
+        if (auth) {
+            this.props.history.push('/dashboard');
+        }
+
+        if (message !== null) {
+            swal({
+                title: "An error occurred!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+            })
+        }
+    },[auth, message, props.history]);
+
     // se obtiene la fecha actual
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -408,6 +430,13 @@ const Register = () => {
         }
 
         // se manda la información al servidor
+        registerUser({
+            firstName,
+            lastName,
+            birthday,
+            email,
+            password
+        });
     };
 
     return(

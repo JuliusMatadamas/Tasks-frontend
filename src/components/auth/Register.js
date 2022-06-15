@@ -394,6 +394,19 @@ const Register = () => {
             return;
         }
 
+        if (password !== passwordConfirm) {
+            swal({
+                title: "The passwords do not match!!",
+                text: "Check that both passwords are the same.",
+                icon: "warning",
+                dangerMode: true,
+            })
+            .then(() => {
+                refPasswordConfirm.current.focus();
+            });
+            return;
+        }
+
         // se manda la información al servidor
     };
 

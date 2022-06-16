@@ -1,10 +1,12 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import "./Register.css";
 import AuthContext from "../../context/authentication/authContext";
 
-const Register = (props) => {
-    console.log(props);
+const Register = () => {
+    const navigate = useNavigate();
+
     // extraer valores del context
     const authContext = useContext(AuthContext);
     const { auth, message, registerUser } = authContext;
@@ -12,10 +14,10 @@ const Register = (props) => {
     // En caso de que el usuario se haya o ya este registrado
     useEffect(() => {
         if (auth) {
-            this.props.history.push('/dashboard');
+            navigate('/dashboard');
         }
 
-        if (message !== null) {
+        if (message !== null || message == "undefined") {
             swal({
                 title: "An error occurred!",
                 text: message,
@@ -23,7 +25,7 @@ const Register = (props) => {
                 dangerMode: true,
             })
         }
-    },[auth, message, props.history]);
+    },[auth, message]);
 
     // se obtiene la fecha actual
     const currentDate = new Date();

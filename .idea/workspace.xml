@@ -20,9 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ac995bd-6206-4ebc-9997-879dd6d89c3f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/config/tokenAuth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/authentication/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/authentication/authReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/authentication/authState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/authentication/authState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +36,20 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2APRXHLkprr0V1dmSnmeZQHOe51" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,13 +59,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Task-backend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -72,7 +87,7 @@
       <workItem from="1654957177135" duration="15000" />
       <workItem from="1655082510823" duration="132000" />
       <workItem from="1655389566455" duration="547000" />
-      <workItem from="1655390129012" duration="1677000" />
+      <workItem from="1655390129012" duration="24350000" />
     </task>
     <servers />
   </component>
@@ -96,5 +111,17 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="668" y="341" key="#ESLint/0.0.1600.860@0.0.1600.860" timestamp="1655390205823" />
+    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1655398115556">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1655398115556" />
+    <state x="380" y="165" key="IDE.errors.dialog" timestamp="1655400391946">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="380" y="165" key="IDE.errors.dialog/0.0.1600.860@0.0.1600.860" timestamp="1655400391946" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1655404199728">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1655404199728" />
   </component>
 </project>

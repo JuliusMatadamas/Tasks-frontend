@@ -9,23 +9,40 @@ const Register = () => {
 
     // extraer valores del context
     const authContext = useContext(AuthContext);
-    const { auth, message, registerUser } = authContext;
+    const { auth, message, token, registerUser, authUser, userLoggedIn, userNotLoggedIn } = authContext;
 
-    // En caso de que el usuario se haya o ya este registrado
+    // console.log(auth);
     useEffect(() => {
-        if (auth) {
+        authUser().then(res => {
+            if(res.data.user)
+            {
+                userLoggedIn();
+            }
+            else
+            {
+                userNotLoggedIn();
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        if (!auth)
+        {
+            if (message !== null)
+            {
+                swal({
+                    title: "An error has occurred!",
+                    text: message,
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            }
+        }
+        else
+        {
             navigate('/dashboard');
         }
-
-        if (message !== null || message == "undefined") {
-            swal({
-                title: "An error occurred!",
-                text: message,
-                icon: "warning",
-                dangerMode: true,
-            })
-        }
-    },[auth, message]);
+    },[auth, message, token]);
 
     // se obtiene la fecha actual
     const currentDate = new Date();
@@ -439,6 +456,16 @@ const Register = () => {
             email,
             password
         });
+
+        /*
+        if (!auth && auth !== null) {
+            swal({
+                title: "An error occurred!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+            })
+        }*/
     };
 
     return(

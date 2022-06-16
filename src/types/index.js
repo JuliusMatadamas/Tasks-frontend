@@ -4,3 +4,6 @@ export const GET_USER = "GET_USER";
 export const LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOG_OUT = "LOG_OUT";
+export const NOT_LOGGED_IN = "NOT_LOGGED_IN";
+export const LOGGED_IN = "LOGGED_IN";
+export const INVALID_TOKEN = "INVALID_TOKEN";

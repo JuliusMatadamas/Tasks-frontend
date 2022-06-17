@@ -1,8 +1,58 @@
-import React, { useState, useRef } from "react";
+import React, {useState, useRef, useContext, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import AuthContext from "../../context/authentication/authContext";
 
 
 const Login = () => {
+    const navigate = useNavigate();
+
+    // extraer valores del context
+    const authContext = useContext(AuthContext);
+    const { auth, message, token, authUser, userLoggedIn, userNotLoggedIn, loginUser } = authContext;
+
+    // Al renderizar el componente, se verifica el estado del usuario
+    useEffect(() => {
+        authUser().then(res => {
+            // Si hay un response
+            if (res.response !== undefined)
+            {
+                // console.log(res.response);
+                // Si no hay un token en el localStorage
+                if(res.response.data.msg == "Not token!") userNotLoggedIn();
+
+                // Si hay un token en el localStorage pero ya no es válido
+                if (res.response.data.msg == "Token not valid!") userNotLoggedIn();
+            }
+            else
+            {
+                // Si hay un user en la respuesta, significa que el usuario está logueado
+                if (res.data.user !== undefined) userLoggedIn(res.data.user);
+            }
+        })
+    }, []);
+
+    //
+    useEffect(() => {
+        // Si el estado del auth es verdadero
+        if (auth)
+        {
+            navigate('/dashboard');
+        }
+        else
+        {
+            if (message !== null)
+            {
+                swal({
+                    title: "An error has occurred!",
+                    text: message,
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            }
+        }
+    }, [auth, message, token]);
+
     // referencias a los elementos del form
     const refEmail = useRef(null);
     const refPassword = useRef(null);
@@ -134,12 +184,9 @@ const Login = () => {
             }
             else
             {
-                // Login mediante ajax
-                swal({
-                    title: "Good job!",
-                    text: "You clicked the button!",
-                    icon: "success",
-                    button: "Aww yiss!",
+                loginUser({
+                    email,
+                    password
                 });
             }
         }

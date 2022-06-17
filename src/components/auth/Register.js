@@ -11,22 +11,35 @@ const Register = () => {
     const authContext = useContext(AuthContext);
     const { auth, message, token, registerUser, authUser, userLoggedIn, userNotLoggedIn } = authContext;
 
-    // console.log(auth);
+    // Al renderizar el componente, se verifica el estado del usuario
     useEffect(() => {
         authUser().then(res => {
-            if(res.data.user)
+            // Si hay un response
+            if (res.response !== undefined)
             {
-                userLoggedIn();
+                // console.log(res.response);
+                // Si no hay un token en el localStorage
+                if(res.response.data.msg == "Not token!") userNotLoggedIn();
+
+                // Si hay un token en el localStorage pero ya no es válido
+                if (res.response.data.msg == "Token not valid!") userNotLoggedIn();
             }
             else
             {
-                userNotLoggedIn();
+                // Si hay un user en la respuesta, significa que el usuario está logueado
+                if (res.data.user !== undefined) userLoggedIn(res.data.user);
             }
-        });
+        })
     }, []);
 
+    //
     useEffect(() => {
-        if (!auth)
+        // Si el estado del auth es verdadero
+        if (auth)
+        {
+            navigate('/dashboard');
+        }
+        else
         {
             if (message !== null)
             {
@@ -38,11 +51,7 @@ const Register = () => {
                 });
             }
         }
-        else
-        {
-            navigate('/dashboard');
-        }
-    },[auth, message, token]);
+    }, [auth, message, token]);
 
     // se obtiene la fecha actual
     const currentDate = new Date();
@@ -456,16 +465,6 @@ const Register = () => {
             email,
             password
         });
-
-        /*
-        if (!auth && auth !== null) {
-            swal({
-                title: "An error occurred!",
-                text: message,
-                icon: "warning",
-                dangerMode: true,
-            })
-        }*/
     };
 
     return(

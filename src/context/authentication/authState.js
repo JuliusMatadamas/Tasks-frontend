@@ -31,12 +31,26 @@ const AuthState = props => {
                 type: REGISTRATION_SUCCESSFUL,
                 payload: resp.data
             });
-
-            // Obtener el usuario
-            // authUser();
         } catch (error) {
             dispatch({
                 type: REGISTRATION_ERROR,
+                payload: error.response.data.msg
+            });
+        }
+    }
+
+    // Login de usuario
+    const loginUser = async data => {
+        try {
+            const resp = await clientAxios.post('/api/auth', data);
+            localStorage.setItem('token', resp.data.token);
+            dispatch({
+                type: LOGIN_SUCCESSFUL,
+                payload: resp.data.token
+            });
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR,
                 payload: error.response.data.msg
             });
         }
@@ -63,10 +77,10 @@ const AuthState = props => {
     }
 
     // Registrar que el usuario está logueado
-    const userLoggedIn = () => {
+    const userLoggedIn = (data) => {
         dispatch({
             type: LOGGED_IN,
-            payload: localStorage.getItem('token')
+            payload: data
         })
     }
 
@@ -74,7 +88,15 @@ const AuthState = props => {
     const userNotLoggedIn = () => {
         dispatch({
             type: NOT_LOGGED_IN,
-            payload: "User not logged in"
+            payload: null
+        })
+    }
+
+    // Registrar que el token almacenado ya no es válido
+    const invalidToken = () => {
+        dispatch({
+            type: INVALID_TOKEN,
+            payload: "The token does not exist, is not valid or has already expired."
         })
     }
 
@@ -89,7 +111,9 @@ const AuthState = props => {
                 registerUser,
                 authUser,
                 userLoggedIn,
-                userNotLoggedIn
+                userNotLoggedIn,
+                invalidToken,
+                loginUser
             }}
         >{ props.children }
         </AuthContext.Provider>

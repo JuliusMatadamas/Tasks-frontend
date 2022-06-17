@@ -18,60 +18,47 @@ export default (state, action) => {
                 ...state,
                 token: action.payload.token,
                 auth: true,
-                message: "Registro exitoso"
+                message: null,
+                user: null
             }
         case REGISTRATION_ERROR:
             return {
                 ...state,
                 token: null,
                 auth: false,
-                message: action.payload
+                message: action.payload,
+                user: null
             }
         case NOT_LOGGED_IN:
             return {
                 ...state,
                 token: null,
                 auth: false,
-                message: action.payload
+                message: null,
+                user: null
             }
         case LOGGED_IN:
             return {
                 ...state,
-                token: action.payload,
                 auth: true,
-                message: null
-            }
-        /*case INVALID_TOKEN:
-            return {
-                ...state,
-                token: null,
-                auth: false,
-                message: action.payload
-            }
-        /*case NOT_LOGGED_IN:
-            return {
-                ...state,
-                auth: false,
-                token: null,
-                message: action.payload
-            }
-        case LOGIN_ERROR:
-            localStorage.removeItem('token');
-            return {
-                ...state,
-                token: null,
-                auth: false,
-                message: action.payload
-            }
-        case GET_USER:
-            return {
+                message: null,
+                user: action.payload
             }
         case LOGIN_SUCCESSFUL:
             return {
+                ...state,
+                auth: true,
+                message: null,
+                token: action.payload
             }
-        case LOG_OUT:
+        case LOGIN_ERROR:
             return {
-            }*/
+                ...state,
+                auth: false,
+                token: null,
+                message: action.payload,
+                user: null
+            }
         default:
             return state;
     }

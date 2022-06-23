@@ -21,12 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac995bd-6206-4ebc-9997-879dd6d89c3f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/MenuUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/MenuUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/authentication/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/authentication/authReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/authentication/authState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/authentication/authState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Task-backend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -90,7 +90,9 @@
       <workItem from="1655389566455" duration="547000" />
       <workItem from="1655390129012" duration="25280000" />
       <workItem from="1655425524037" duration="1210000" />
-      <workItem from="1655474494246" duration="11488000" />
+      <workItem from="1655474494246" duration="11564000" />
+      <workItem from="1655566615384" duration="2439000" />
+      <workItem from="1655944454546" duration="404000" />
     </task>
     <servers />
   </component>

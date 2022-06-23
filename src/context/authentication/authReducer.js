@@ -59,6 +59,14 @@ export default (state, action) => {
                 message: action.payload,
                 user: null
             }
+        case LOG_OUT:
+            return {
+                ...state,
+                auth: false,
+                token: null,
+                message: null,
+                user: action.payload
+            }
         default:
             return state;
     }

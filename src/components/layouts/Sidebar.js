@@ -4,7 +4,7 @@ import { BsListTask, BsBattery, BsBatteryHalf, BsBatteryFull } from "react-icons
 import { FaChartPie, FaRegPlusSquare } from "react-icons/fa";
 import { GrLogout } from "react-icons/gr";
 
-const Sidebar = ({handleMenuToggle}) => {
+const Sidebar = ({handleMenuToggle, handleLogout}) => {
     return(
         <section id="sidebar-wrapper" className={`animate__animated animate__fadeInLeft bg-white`}>
             <div className={`border-bottom fs-4 fw-bold primary-text py-4 sidebar-heading text-center`}>
@@ -26,7 +26,7 @@ const Sidebar = ({handleMenuToggle}) => {
                 <NavLink to="/finished" className={`bg-transparent list-group-item list-group-item-action second-text`}>
                     <BsBatteryFull></BsBatteryFull> Finished
                 </NavLink>
-                <NavLink to="/logout" className={`bg-transparent list-group-item list-group-item-action second-text`}>
+                <NavLink onClick={handleLogout} to="" className={`bg-transparent list-group-item list-group-item-action second-text`}>
                     <GrLogout></GrLogout> Logout
                 </NavLink>
             </div>

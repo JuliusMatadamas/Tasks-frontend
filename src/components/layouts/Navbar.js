@@ -2,7 +2,7 @@ import React from "react";
 import MenuUser from "./MenuUser";
 import { FaBars } from "react-icons/fa";
 
-const Navbar = ({handleMenuToggle}) => {
+const Navbar = ({handleMenuToggle, handleLogout}) => {
     return(
         <nav className={`animate__animated animate__fadeInDown bg-transparent px-4 py-4 navbar navbar-expand-lg navbar-light zindex-dropdown`}>
             <div className={`align-items-center d-flex`}>
@@ -12,7 +12,7 @@ const Navbar = ({handleMenuToggle}) => {
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" className={`navbar-toggler`} data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
                 <span className={`navbar-toggler-icon`}></span>
             </button>
-            <MenuUser></MenuUser>
+            <MenuUser handleLogout={handleLogout}></MenuUser>
         </nav>
     )
 }

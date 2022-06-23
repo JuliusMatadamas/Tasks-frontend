@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { GrLogout, GrUser, GrUserSettings } from "react-icons/gr";
 
-const MenuUser = () => {
+const MenuUser = ({handleLogout}) => {
     return(
         <div className={`collapse navbar-collapse`} id="navbarSupportedContent">
             <ul className={`mb-2 mb-lg-0 ms-auto navbar-nav`}>
@@ -24,7 +24,7 @@ const MenuUser = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="#" className={`dropdown-item`}>
+                            <Link onClick={handleLogout} to="" className={`dropdown-item`}>
                                 <GrLogout className={`me-2`}></GrLogout> Logout
                             </Link>
                         </li>

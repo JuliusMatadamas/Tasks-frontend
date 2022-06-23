@@ -56,6 +56,15 @@ const AuthState = props => {
         }
     }
 
+    // Logout de usuario
+    const logoutUser = () => {
+        localStorage.removeItem('token');
+        dispatch({
+            type: LOG_OUT,
+            payload: null
+        })
+    }
+
     // Retornar si el usuario está autenticado
     const authUser = async () => {
         // Se obtiene el token de localStorage
@@ -113,7 +122,8 @@ const AuthState = props => {
                 userLoggedIn,
                 userNotLoggedIn,
                 invalidToken,
-                loginUser
+                loginUser,
+                logoutUser
             }}
         >{ props.children }
         </AuthContext.Provider>

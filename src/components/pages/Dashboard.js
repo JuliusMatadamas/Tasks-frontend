@@ -12,7 +12,7 @@ const Dashboard = () => {
 
     // extraer valores del context
     const authContext = useContext(AuthContext);
-    const { auth, authUser, userLoggedIn, userNotLoggedIn } = authContext;
+    const { auth, authUser, userLoggedIn, userNotLoggedIn, logoutUser } = authContext;
 
     // Al renderizar el componente, se verifica el estado del usuario
     useEffect(() => {
@@ -49,12 +49,27 @@ const Dashboard = () => {
     }
 
     // Cuando se haga clic en alguno de los botones para cerrar sesión
+    const handleLogout = e => {
+        e.preventDefault();
+        swal({
+            title: "Are you sure?",
+            text: "Confirm if you want to logout",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((confirmLogout) => {
+            if (confirmLogout) {
+                logoutUser();
+                navigate('/');
+            }
+        });
+    }
 
     return(
         <main ref={wrapper} id="wrapper" className={`d-flex`}>
-            <Sidebar></Sidebar>
+            <Sidebar handleLogout={handleLogout}></Sidebar>
             <section id="page-content-wrapper">
-                <Navbar handleMenuToggle={handleMenuToggle}></Navbar>
+                <Navbar handleMenuToggle={handleMenuToggle} handleLogout={handleLogout}></Navbar>
                 <div className={`animate__animated animate__fadeInRight container-fluid px-4`}>
                     <div className={`align-items-center bg-white justify-content-around p-3 rounded shadow-sm`}>
                         <h3>Dashboard</h3>
